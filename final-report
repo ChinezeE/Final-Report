@@ -1,6 +1,6 @@
 ---
 title: 'Nutritions Facts of Cereals'
-author: "Juritza, Chineze, Julie"
+author: "Juritza Pantoja, Chineze Emodi, Julie Bawi"
 date: "Fall 2021"
 output: slidy_presentation
 ---
@@ -23,8 +23,9 @@ Cereal! A quick, fast and delicious meal for breakfast or as a late-night "snack
 We found a dataset on Kaggle crated updated on October 24, 2017, by Christ Crawford . But stated in his acknowledgments section the dataset was "gathered and cleaned up by Peta Isenberg, Pierre Dragicevic and Yvonne Jansen," so credit must be given to them as well. But the original source was by "Stat.Lib- 1993 expo." Which is then moved to kaggle.
 
 This dataset has many different fields to look at, including the manufacturers, type (Hot or Cold), Calories, Rating, and so much more.
-We have created a few interesting questions to help us understand this dataset. By the end of this presentation you may change your mind about what best ceral it is and your thoughts might change on the best cereal you are going to consume.
-look at data of ceral and the nutirein facts.
+We have created a few interesting questions to help us understand this dataset. By the end of this presentation you may change your mind about what best cereal is the best cereal you are going to consume.
+
+Without further ado lets get started by looking at these data and their nutrition facts. 
  
 ---
 
@@ -69,7 +70,7 @@ glimpse(cereal)
 
 # Closer Look:
 
- We were curious to know what the meant by hot and cold type cereal. Did they mean What type of cereal is best hot or cold? Lets look at the data
+ We were curious to know what they meant by hot and cold type cereal. Did they mean What type of cereal is best hot or cold? Lets look at the data
 
 ### Types of cereal: Hot vs Cold
 ```{r message = FALSE, warning = FALSE}
@@ -139,7 +140,7 @@ cereal %>%
 
  OK, OK that was fun... I guess. Lets move on, we want to see what the relationship between the sugar and the calories.
  
- According to, Diabetes Education Online: [https://dtc.ucsf.edu/living-with-diabetes/diet-and-nutrition/understanding-carbohydrates/demystifying-sugar/] , "A teaspoon of sugar is about 20 calories." So in addition to the set calories, there's additional calories from the sugar.
+ According to, Diabetes Education Online , "A teaspoon of sugar is about 20 calories." So in addition to the set calories, there's additional calories from the sugar.
 
 ### What is the relationship between sugar and calories? 
 ```{r message = FALSE, warning = FALSE}
@@ -151,6 +152,17 @@ cereal %>%
   labs(title = "Sugar vs Calories", x = "Calories", y= "Sugar")
 ```
 
+**Will high-fiber cereals have lower calories per serving? ** 
+```{r message = FALSE, warning = FALSE}
+cereal %>% 
+  ggplot(aes(x = calories, y = fiber, color= fiber)) +
+  geom_smooth() +
+  geom_point()+ 
+  theme_get()+
+  labs(title = "Fiber vs Calories", x = "Calories", y= "Fiber")
+  
+```
+
  So by the looks of it, as the calories increase, so does the sugar intake.
  Its actually kind of scary, so make sure you are aware when you go to pick your next midnight snack, you may want to think twice before reaching for your favorite cereal.
  
@@ -158,11 +170,12 @@ cereal %>%
 
  Wait... what is fiber?! If your like me, and don't know what it is, a quick Google search will help clarify.
  
- According to Harvard: The Nutrition Source- [https://www.hsph.harvard.edu/nutritionsource/carbohydrates/fiber/], "Fiber is a type of carbohydrate that the body can’t digest." Also Taylor Norris, a writter form healthline wrote in an article, that the recomended daily fiber intake is 25 for women and 38 for men. [https://www.healthline.com/health/soluble-vs-insoluble-fiber]
+ According to Harvards-The Nutrition Source, "Fiber is a type of carbohydrate that the body can’t digest." Also Taylor Norris, a writter form healthline wrote in an article, that the recomended daily fiber intake is 25 for women and 38 for men.
  
  So, that has us thinking which cereal has the most fiber, also do cereals with lower calories have more or less fiber in them? 
 
-### Which has the most fiber? Will high fiber cereals have lower calories per serving?  
+### Which has the most fiber? Will high fiber cereals have lower calories per serving? 
+
 ```{r message = FALSE, warning = FALSE}
 # The Highest fiber
 cereal$name[cereal$fiber == max(cereal$fiber)]
@@ -372,6 +385,8 @@ boxplot(cereal$calories~cereal$mfr,
 
  To conclude, looking at the nutrition facts of these, we can conclude that cereal isn't the healthiest option in the market. Hopefully, we have convinced you to be aware the next time you go to pick your cereal of choice you will take a second look at the nutrition facts. Although yummy and easy to prepare, its not the healthiest to consume as an everyday meal. Weather it be for breakfast or for a mid-day snack. If you do decide to gobble down that bowl of cereal at 2 in the morning, maybe not something that is high in fiber. Maybe every now-and-then treat yourself with some avocado toast or some acai bowl.
  
+ ![](C:/Users/chunw/OneDrive/Data2401/cereal.gif)
+ 
  ## Resources 
 
 - 80 Cereals Dataset: https://www.kaggle.com/crawford/80-cereals
@@ -381,3 +396,4 @@ boxplot(cereal$calories~cereal$mfr,
 - Protein and its importance: https://www.youtube.com/watch?v=Fe5wHw3pnmY
 - Ketogenic lifestyle: https://www.everydayhealth.com/diet-nutrition/ketogenic-diet/ , https://www.everydayhealth.com/ketogenic-diet/diet/types-targeted-keto-high-protein-keto-keto-cycling-more/
 - More information on Fiber: https://www.hsph.harvard.edu/nutritionsource/carbohydrates/fiber/ , https://www.healthline.com/health/soluble-vs-insoluble-fiber
+- Sugar intake: https://dtc.ucsf.edu/living-with-diabetes/diet-and-nutrition/understanding-carbohydrates/demystifying-sugar/
